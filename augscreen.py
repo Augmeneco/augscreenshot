@@ -1,19 +1,25 @@
 #!/usr/bin/python3
-import os, time
+import os, time, sys
 from PIL import Image
 import contextlib
 with contextlib.redirect_stdout(None):
-	import pygame
+    import pygame
 from pygame.locals import *
 
-os.system('import -window root /tmp/augscreen.jpg')
-imgPIL = Image.open('/tmp/augscreen.jpg')
+if 'save' in sys.argv:
+    save = True
+else:
+    save = False
+os.system('import -window root /tmp/augscreen.png')
+imgPIL = Image.open('/tmp/augscreen.png')
 w,h = imgPIL.size
 pygame.init()
 
+#screen = pygame.display.set_mode((w,h),0,32)
 screen = pygame.display.set_mode((w,h),pygame.FULLSCREEN)
+#pygame.display.toggle_fullscreen()
 
-img = pygame.image.load('/tmp/augscreen.jpg')
+img = pygame.image.load('/tmp/augscreen.png')
 newSurf = pygame.Surface((w,h))
 newSurf.blit(img, (0,0))
 
@@ -57,6 +63,12 @@ while mainLoop:
 pygame.quit()
 print('Click1: ',click1_pose,'\nClick2: ',click2_pose)
 cropped_img = imgPIL.crop(click1_pose+click2_pose)
-cropped_img.save('/tmp/augscreen.jpg')
-os.system('xclip -selection clipboard -t image/png -i /tmp/augscreen.jpg;rm /tmp/augscreen.jpg')
+if save:
+    if 'Изображения' in os.listdir(os.getcwd()):
+        cropped_img.save(os.getcwd()+'/Изображения/augscreen.png')
+    else:
+        cropped_img.save(os.getcwd()+'/Pictures/augscreen.png')
+else:
+    cropped_img.save('/tmp/augscreen.png')
+    os.system('xclip -selection clipboard -t image/png -i /tmp/augscreen.png;rm /tmp/augscreen.png')
 print('Сохранено в буфер')
