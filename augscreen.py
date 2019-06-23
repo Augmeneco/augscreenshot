@@ -25,6 +25,7 @@ draw = False
 activebutton = False
 fullscreen_bt = False
 fullscreen_coords = False
+fullscreen_comb = False
 
 click1_pose = [-1,-1]
 bt_save = {'x':range(-1,-1),'y':range(-1,-1)}
@@ -34,9 +35,24 @@ while mainLoop:
 	for event in pygame.event.get():
 		if event.type == QUIT:
 				mainLoop = False
+						
 	screen.fill((255,255,255))
 	screen.blit(newSurf, (0,0))
 	
+	pressed = pygame.key.get_pressed()
+	
+	if pressed[306] and pressed[97]:
+		click1_pose = 0,0
+		mouse_pose = w,h
+		fullscreen_comb = True
+		draw = True
+	
+	if pressed[306] and pressed[99]:
+		cropped_img = imgPIL.crop(click1_pose+mouse_pose)
+		cropped_img.save('/tmp/augscreen.png')
+		os.system('xclip -selection clipboard -t image/png -i /tmp/augscreen.png;rm /tmp/augscreen.png')
+		mainLoop = False
+
 	if pygame.mouse.get_pressed()[0] == 1 and click1 == False and draw == True and pygame.mouse.get_pos()[0] in bt_save['x'] and pygame.mouse.get_pos()[1] in bt_save['y']:
 		activebutton = True
 		cropped_img = imgPIL.crop(click1_pose+mouse_pose)
@@ -62,12 +78,12 @@ while mainLoop:
 	if pygame.mouse.get_pressed()[0] == 0 and click1==True:
 		click1 = False
 	
-	if pygame.mouse.get_pos()[0] + 90 > w or pygame.mouse.get_pos()[1] + 55 > h:
+	if pygame.mouse.get_pos()[0] + 90 > w or pygame.mouse.get_pos()[1] + 55 > h or fullscreen_comb:
 		fullscreen_bt = True
 	else:
 		fullscreen_bt = False
 	
-	if click1_pose[1] - 25 < 0:
+	if click1_pose[1] - 25 < 0 or fullscreen_comb:
 		fullscreen_coords = True
 	else:
 		fullscreen_coords = False
