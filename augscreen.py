@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os, time
+import os, time, getpass
 from PIL import Image
 import contextlib
 with contextlib.redirect_stdout(None):
@@ -28,6 +28,7 @@ fullscreen_coords = False
 fullscreen_comb = False
 
 click1_pose = [-1,-1]
+mouse_pose = [-1,-1]
 bt_save = {'x':range(-1,-1),'y':range(-1,-1)}
 bt_buffer = {'x':range(-1,-1),'y':range(-1,-1)}
 
@@ -46,6 +47,9 @@ while mainLoop:
 		mouse_pose = w,h
 		fullscreen_comb = True
 		draw = True
+		
+	if click1_pose != (0,0) and mouse_pose != (w,h):
+		fullscreen_comb = False
 	
 	if pressed[306] and pressed[99]:
 		cropped_img = imgPIL.crop(click1_pose+mouse_pose)
@@ -56,8 +60,8 @@ while mainLoop:
 	if pygame.mouse.get_pressed()[0] == 1 and click1 == False and draw == True and pygame.mouse.get_pos()[0] in bt_save['x'] and pygame.mouse.get_pos()[1] in bt_save['y']:
 		activebutton = True
 		cropped_img = imgPIL.crop(click1_pose+mouse_pose)
-		if 'Изображения' in os.listdir(os.getcwd()): cropped_img.save(os.getcwd()+'/Изображения/augscreen.png')
-		else: cropped_img.save(os.getcwd()+'/Pictures/augscreen.png')
+		if 'Изображения' in os.listdir('/home/'+getpass.getuser()): cropped_img.save('/home/'+getpass.getuser()+'/Изображения/augscreen.png')
+		else: cropped_img.save('/home/'+getpass.getuser()+'/Pictures/augscreen.png')
 		mainLoop = False
 		
 	if pygame.mouse.get_pressed()[0] == 1 and click1 == False and draw == True and pygame.mouse.get_pos()[0] in bt_buffer['x'] and pygame.mouse.get_pos()[1] in bt_buffer['y']:
