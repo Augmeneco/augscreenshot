@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, ExtCtrls, LCLIntf, LCLType, RTTICtrls, Process, Clipbrd, fphttpclient, gtk2, gdk2;
+  StdCtrls, ExtCtrls, LCLIntf, LCLType, RTTICtrls, Process, Clipbrd, fphttpclient;
 
 type
 
@@ -21,7 +21,6 @@ type
     SaveDialog1: TSaveDialog;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Image4MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -74,6 +73,7 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   WindowState := wsFullScreen;
+  DeleteFile('/tmp/augscreen.bmp');
   RunCommand('import -window root /tmp/augscreen.bmp',output);
   img := TBitmap.Create;
   bmp := TBitmap.Create;
@@ -115,17 +115,6 @@ begin
     bmp.SaveToFile(SaveDialog1.FileName);
   SaveDialog1.Free;
   halt;
-end;
-
-procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  c: PGtkClipboard;
-  t: string;
-begin
-  c := gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
-  t := Clipboard.AsText;
-  gtk_clipboard_set_text(c, PChar(t), Length(t));
-  gtk_clipboard_store(c);
 end;
 
 procedure TForm1.Image4MouseDown(Sender: TObject; Button: TMouseButton;

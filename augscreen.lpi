@@ -33,7 +33,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="3">
       <Unit0>
         <Filename Value="augscreen.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -46,13 +46,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="utils.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit2>
-      <Unit3>
         <Filename Value="gray.bmp"/>
         <IsPartOfProject Value="True"/>
-      </Unit3>
+      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
