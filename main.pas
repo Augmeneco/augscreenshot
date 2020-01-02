@@ -72,7 +72,6 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  WindowState := wsFullScreen;
   DeleteFile('/tmp/augscreen.bmp');
   RunCommand('import -window root /tmp/augscreen.bmp',output);
   img := TBitmap.Create;
@@ -94,6 +93,7 @@ begin
   Image4.Top:=0;
   Image4.Width:=Screen.Width;
   Image4.Height:=Screen.Height;
+  WindowState := wsFullScreen;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);

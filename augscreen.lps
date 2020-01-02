@@ -18,20 +18,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="11"/>
-        <CursorPos X="45" Y="23"/>
+        <TopLine Value="64"/>
+        <CursorPos X="5" Y="75"/>
         <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="utils.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="40"/>
-        <CursorPos X="13" Y="62"/>
-        <UsageCount Value="34"/>
-      </Unit2>
-      <Unit3>
         <Filename Value="gray.bmp"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
@@ -40,6 +33,13 @@
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="26"/>
         <DefaultSyntaxHighlighter Value="None"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="utils.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="40"/>
+        <CursorPos X="13" Y="62"/>
+        <UsageCount Value="34"/>
       </Unit3>
       <Unit4>
         <Filename Value="/usr/lib/lazarus/lcl/include/graphic.inc"/>
