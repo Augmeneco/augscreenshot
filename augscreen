@@ -1,0 +1,3 @@
+#!/bin/bash
+cd $HOME/.local/share/augscreen
+python3 main.py

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=AugScreenshot
+GenericName=AugScreenshot
+Exec=augscreen
+Terminal=false
+Icon=/usr/share/pixmaps/augscreen.png
+X-Purism-FormFactor=Workstation;Mobile;
