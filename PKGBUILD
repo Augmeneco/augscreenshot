@@ -23,8 +23,6 @@ package() {
     mkdir -p $pkgdir$HOME/.local/share/applications
     mkdir -p $pkgdir/usr/share/pixmaps/
 
-    chmod -R 700 $pkgdir/home/*
-
     cp icon.png $pkgdir/usr/share/pixmaps/augscreen.png
     cp *.py $pkgdir$HOME/.local/share/augscreen/
     cp augscreen.desktop $pkgdir$HOME/.local/share/applications/
